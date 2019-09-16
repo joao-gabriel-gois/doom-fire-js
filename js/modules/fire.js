@@ -14,7 +14,16 @@ export default class Fire {
 	}
 
 	calculateFirePropagation() {
-
+		for (let column = 0; column < this.fireWidth; column++) {
+			for (let row = 0; row < this.fireHeight; row++) {
+				const firePixelIndex = column + (this.fireWidth * row);//linear array, a full width moves one column bellow
+				console.log(`Índice: ${firePixelIndex},
+				Elemento: ${this.firePixelArray[firePixelIndex]},
+				Coluna: ${column},
+				Linha: ${row}.
+				`);
+			}
+		}
 	}
 
 	renderFire() {
@@ -30,7 +39,7 @@ export default class Fire {
 		const allTableRows = [...table.children];
 		allTableRows.forEach((tableRow, rowIndex) => {
 			for (let column = 0; column < this.fireWidth; column++) {
-				// elements and calcuated index for columns, as we have a linear array
+				// elements and calculated index for columns, as we have a linear array
 				const tableCell = document.createElement('td');
 				const divPixelIndex = document.createElement('div');
 				const firePixelIndex = column + (this.fireWidth * rowIndex);
@@ -59,7 +68,7 @@ export default class Fire {
 	init() {
 		this.createFireDataStructure();
 		this.createFireSource();
-		console.log(this.firePixelArray);
+		this.calculateFirePropagation()
 		this.renderFire();
 	}
 }
