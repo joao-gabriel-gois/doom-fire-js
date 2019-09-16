@@ -8,17 +8,19 @@
 		<style>
 			table {
 				border-collapse: collapse;
-				border: 1px solid #010;
+				border: 1px solid rgb(130,133,0);
 			}
 			td {
 				width: 50px;
 				height: 50px;
-				border: 1px solid #010;
+				border: 1px solid rgb(130,133,0);
 				vertical-align:middle;
 				text-align: center;
 				font-family: monospace;
 				font-size:18px;
 				position: relative;
+				color: rgb(231, 24, 17);
+			 
 			}
 			.pixel-index {
 				font-size: 10px;
@@ -26,10 +28,27 @@
 				position: absolute;
 				top:2px;
 				right:2px;
-				color:#787;	
+				color:#a63;	
+			}
+			button, button.active:hover {
+				font-family: monospace;
+				font-size:10pt;
+				color: rgb(31, 7, 7);
+				background-color: rgb(183,183,47);
+				padding: 9pt;
+				margin: 3em 13em;
+				text-transform: uppercase;
+				transition: 360ms;	
+				border: 3px solid rgb(130,133,0);
+				border-radius: 5px;
+			}
+			button.active, button:hover {
+				color: rgb(219, 235, 6);
+				background-color: rgb(231, 24, 17);
 			}
 		</style>
 		<div id="fireCanvas"></div>
+		<button>See Data Structure</button>
 		<script src="main.js"></script>
 	</body>
 <html>
