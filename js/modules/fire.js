@@ -126,7 +126,7 @@ export default class Fire {
 		this.createFireDataStructure();
 		this.createFireSource();
 		this.calculateFirePropagation(debug);
-		this.interval = setInterval(() => this.calculateFirePropagation(debug), 50);
+		this.interval = setInterval(() => this.calculateFirePropagation(debug), 70);
 	}
 };
 
