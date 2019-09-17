@@ -6,40 +6,47 @@
 </head>
 	<body>
 		<style>
+			body {
+				background-color:#222;
+			}
+			.doom-fire {
+				margin-top: 9%;
+				display: flex;
+		  	justify-content: center;
+  			align-items: bottom;
+			}
 			table {
 				border-collapse: collapse;
 				border: 1px solid rgb(130,133,0);
 			}
 			td {
-				width: 50px;
-				height: 50px;
-				border: 1px solid rgb(130,133,0);
+				width: 5px;
+				height: 5px;
+				border: none/*1px solid rgb(130,133,0)*/;
 				vertical-align:middle;
 				text-align: center;
 				font-family: monospace;
-				font-size:18px;
+				font-size:5px;
 				position: relative;
 				color: rgb(231, 24, 17);
 			 
 			}
 			.pixel-index {
-				font-size: 10px;
+				font-size: 3px;
 				display: inline-block;
 				position: absolute;
-				top:2px;
-				right:2px;
+				top:0px;
+				right:1px;
 				color:#a63;	
 			}
 			button, button.active:hover {
-				font-family: monospace;
+				font-family: 'Verdana';
 				font-size:10pt;
+				font-weight: 600;
 				color: rgb(31, 7, 7);
 				background-color: rgb(183,183,47);
-				padding: 9pt;
-				margin: 3em 13em;
-				text-transform: uppercase;
-				transition: 360ms;	
-				border: 3px solid rgb(130,133,0);
+				text-transform: uppercase;	
+				border: 2px solid rgb(130,133,0);
 				border-radius: 5px;
 			}
 			button.active, button:hover {
@@ -47,8 +54,10 @@
 				background-color: rgb(231, 24, 17);
 			}
 		</style>
-		<div id="fireCanvas"></div>
-		<button>See Data Structure</button>
+		<section class="doom-fire">
+			<div id="fireCanvas"></div>
+			<button>See Data Structure</button>
+		</section>
 		<script src="main.js"></script>
 	</body>
 <html>

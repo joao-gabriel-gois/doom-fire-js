@@ -5,7 +5,7 @@ export default class Fire {
 		this.fireHeight = fireHeight;
 		this.fireCanvasArea = fireWidth * fireHeight;
 		this.fireCanvasElement = document.getElementById(fireCanvasElement);
-		this.fireCoolorsPalette = [
+		this.fireColorsPalette = [
 			{"r":7,"g":7,"b":7},{"r":31,"g":7,"b":7},{"r":47,"g":15,"b":7},{"r":71,"g":15,"b":7},{"r":87,"g":23,"b":7},
 			{"r":103,"g":31,"b":7},{"r":119,"g":31,"b":7},{"r":143,"g":39,"b":7},{"r":159,"g":47,"b":7}, {"r":175,"g":63,"b":7},
 			{"r":191,"g":71,"b":7},{"r":199,"g":71,"b":7},{"r":223,"g":79,"b":7},{"r":223,"g":87,"b":7}, {"r":223,"g":87,"b":7},{"r":215,"g":95,"b":7},{"r":215,"g":95,"b":7},{"r":215,"g":103,"b":15},{"r":207,"g":111,"b":15},
@@ -28,7 +28,7 @@ export default class Fire {
 	calculateFirePropagation(debug) {
 		for (let column = 0; column < this.fireWidth; column++) {
 			for (let row = 0; row < this.fireHeight; row++) {
-				const firePixelIndex = column + (this.fireWidth * row);// linear data struc(array), a full width moves 1 column down
+				const firePixelIndex = column + (this.fireWidth * row);// linear data struct(array), a full width moves 1 column down
 				this.updateFireIntensityPerPixel(firePixelIndex);
 			}
 		}
@@ -45,7 +45,7 @@ export default class Fire {
 		const bellowPixelIndex = currentPixelIndex + this.fireWidth;// same linear logic for moving through columns
 		if (bellowPixelIndex >= this.fireCanvasArea) return;
 		
-		const decay = Math.round(Math.random() * 9);
+		const decay = Math.round(Math.random() * 3);
 		const bellowPixelFireIntensity = this.firePixelArray[bellowPixelIndex];
 		this.firePixelArray[currentPixelIndex] = (bellowPixelFireIntensity - decay) >= 0 ? bellowPixelFireIntensity - decay : 0;
 	}
@@ -68,14 +68,19 @@ export default class Fire {
 				const divPixelIndex = document.createElement('div');
 				const firePixelIndex = column + (this.fireWidth * rowIndex);
 				const fireIntensity = this.firePixelArray[firePixelIndex];
-				// inserting content and style for each cell (also to its index label)
+				// inserting content and style for each cell (also to its index label, for debug case)
+				const color = this.fireColorsPalette[fireIntensity];
+				const colorString = `rgb(${color.r}, ${color.g}, ${color.b})`;
 				if (debug) {
+					table.style.background = '#222';// 1/3 devil
 					divPixelIndex.classList.add('pixel-index');
 					divPixelIndex.innerText = firePixelIndex;
+					tableCell.style.width = '10px';
+					tableCell.style.height = '10px';
+					tableCell.style.color = colorString;
 					tableCell.innerText = fireIntensity;
 				} else {
-					const color = this.fireCoolorsPalette[fireIntensity];
-					const colorString = `rgb(${color.r}, ${color.g}, ${color.b})`;
+					table.background = '#fff';
 					tableCell.style.backgroundColor = colorString;
 				}
 				// rendering
@@ -86,6 +91,7 @@ export default class Fire {
 		});
 		this.fireCanvasElement.appendChild(table);
 	}
+
 	createFireSource() {
 		//loop to add/update values only for the last row
 		for (let column = 0; column <= this.fireWidth; column++) {
@@ -93,13 +99,15 @@ export default class Fire {
 			this.firePixelArray[lastLinePixelsIndex] = 36;
 		}
 	}
-	onClick() {
+
+	onClick(event) {
+		event.preventDefault();
 		this.btn.classList.toggle('active');
 		[...this.fireCanvasElement.children].forEach(child => {
 			child.remove();
 		});
 		this.btn.removeEventListener('click', this.onClick);
-		clearInterval(this.interval, 200)
+		clearInterval(this.interval, 200);
 		if (this.btn.classList.contains('active')) {
 			this.btn.innerText = 'see fire animation';
 			this.init(true);
@@ -108,6 +116,7 @@ export default class Fire {
 			this.init();
 		}			
 	}
+
 	addTogleViewEvent() {
 		this.btn.addEventListener('click', this.onClick);
 	}
@@ -117,7 +126,7 @@ export default class Fire {
 		this.createFireDataStructure();
 		this.createFireSource();
 		this.calculateFirePropagation(debug);
-		this.interval = setInterval(() => this.calculateFirePropagation(debug), 200);
+		this.interval = setInterval(() => this.calculateFirePropagation(debug), 50);
 	}
 };
 
