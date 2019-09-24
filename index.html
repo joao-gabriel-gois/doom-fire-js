@@ -10,29 +10,36 @@
 			background-color:#222;
 		}
 		.doom-fire {
-			margin-top: 9%;
-			display: flex;
+			margin: 10% auto;
+			display: flexbox;
+			max-width: 36em;
 			justify-content: center;
-			align-items: bottom;
+			align-items: center;
+			box-sizing: border-box;
+			overflow: hidden;
+		}
+		div#fireCanvas {
+			border: 3px solid rgb(130,133,0);
+			border-radius: 8px;
 		}
 		table {
 			border-collapse: collapse;
 			border: 1px solid rgb(130,133,0);
 		}
 		td {
-			width: 5px;
-			height: 5px;
+			width: 3px;
+			height: 3px;
 			border: none/*1px solid rgb(130,133,0)*/;
 			vertical-align:middle;
 			text-align: center;
 			font-family: monospace;
-			font-size:5px;
+			font-size:4px;
 			position: relative;
 			color: rgb(231, 24, 17);
 			
 		}
 		.pixel-index {
-			font-size: 3px;
+			font-size: 2px;
 			display: inline-block;
 			position: absolute;
 			top:0px;
@@ -41,13 +48,15 @@
 		}
 		button, button.active:hover {
 			font-family: 'Verdana';
-			font-size:10pt;
+			font-size:8pt;
 			font-weight: 600;
+			padding: .8em .5em;
 			color: rgb(31, 7, 7);
 			background-color: rgb(183,183,47);
+			margin: 3em 37%;
 			text-transform: uppercase;	
-			border: 2px solid rgb(130,133,0);
-			border-radius: 5px;
+			border: 4px solid rgb(130,133,0);
+			border-radius: 8px;
 		}
 		button.active, button:hover {
 			color: rgb(219, 235, 6);

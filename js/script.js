@@ -1,4 +1,4 @@
 import Fire from './modules/fire.js';
-
-const fire = new Fire(Math.round(window.innerWidth / 10), 35, 'fireCanvas');
-fire.init();
+const fireCanvasWidth = Math.round((window.innerWidth / 3));
+const fire = new Fire(fireCanvasWidth, 40, 'fireCanvas');
+fire.init(false, true);
