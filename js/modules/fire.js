@@ -45,7 +45,7 @@ export default class Fire {
 		const bellowPixelIndex = currentPixelIndex + this.fireWidth;// same linear logic for moving through columns
 		if (bellowPixelIndex >= this.fireCanvasArea) return;
 		
-		const decay = Math.round(Math.random() * 3);
+		const decay = Math.round(Math.random() * 1.25 + .45);
 		const bellowPixelFireIntensity = this.firePixelArray[bellowPixelIndex];
 		this.firePixelArray[currentPixelIndex] = (bellowPixelFireIntensity - decay) >= 0 ? bellowPixelFireIntensity - decay : 0;
 	}
@@ -75,8 +75,8 @@ export default class Fire {
 					table.style.background = '#222';// 1/3 devil
 					divPixelIndex.classList.add('pixel-index');
 					divPixelIndex.innerText = firePixelIndex;
-					tableCell.style.width = '10px';
-					tableCell.style.height = '10px';
+					tableCell.style.width = '7px';
+					tableCell.style.height = '7px';
 					tableCell.style.color = colorString;
 					tableCell.innerText = fireIntensity;
 				} else {
@@ -107,7 +107,7 @@ export default class Fire {
 			child.remove();
 		});
 		this.btn.removeEventListener('click', this.onClick);
-		clearInterval(this.interval, 200);
+		clearInterval(this.interval, 8);
 		if (this.btn.classList.contains('active')) {
 			this.btn.innerText = 'see fire animation';
 			this.init(true);
@@ -121,12 +121,14 @@ export default class Fire {
 		this.btn.addEventListener('click', this.onClick);
 	}
 
-	init(debug) {
+	init(debug, isFirstInit) {
 		this.addTogleViewEvent();
-		this.createFireDataStructure();
-		this.createFireSource();
+		if (isFirstInit) {
+			this.createFireDataStructure();
+			this.createFireSource();
+		}
 		this.calculateFirePropagation(debug);
-		this.interval = setInterval(() => this.calculateFirePropagation(debug), 50);
+		this.interval = setInterval(() => this.calculateFirePropagation(debug), 80);
 	}
 };
 
