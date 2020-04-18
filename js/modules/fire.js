@@ -1,5 +1,4 @@
-export default class Fire {
-	constructor(fireWidth, fireHeight, fireCanvasElement) {
+export default function Fire(fireWidth, fireHeight, fireCanvasElement) {
 		this.firePixelArray = [];
 		this.fireWidth = fireWidth;
 		this.fireHeight = fireHeight;
@@ -17,15 +16,15 @@ export default class Fire {
 		] // this.fireColorsPalette.length === 37
 		this.btn =  document.querySelector('button');
 		this.onClick = this.onClick.bind(this);
-	}
+	
 
-	createFireDataStructure() {
+	function createFireDataStructure() {
 		for (let i = 0; i < this.fireCanvasArea; i++) {
 			this.firePixelArray[i] = 0;
 		}
 	}
 
-	calculateFirePropagation(debug) {
+	function calculateFirePropagation(debug) {
 		for (let column = 0; column < this.fireWidth; column++) {
 			for (let row = 0; row < this.fireHeight; row++) {
 				const firePixelIndex = column + (this.fireWidth * row);// linear data struct(array), a full width moves 1 column down
@@ -41,7 +40,7 @@ export default class Fire {
 		this.renderFire(debug);
 	}
 
-	updateFireIntensityPerPixel(currentPixelIndex) {
+	function updateFireIntensityPerPixel(currentPixelIndex) {
 		const bellowPixelIndex = currentPixelIndex + this.fireWidth;// same linear logic for moving through columns
 		if (bellowPixelIndex >= this.fireCanvasArea) return;
 		
@@ -50,7 +49,7 @@ export default class Fire {
 		this.firePixelArray[currentPixelIndex] = (bellowPixelFireIntensity - decay) >= 0 ? bellowPixelFireIntensity - decay : 0;
 	}
 
-	renderFire(debug) {
+	function renderFire(debug) {
 		// need to figure out how to shrink this method
 		// next exercise after refactoring
 		const table = document.createElement('table');
@@ -92,7 +91,7 @@ export default class Fire {
 		this.fireCanvasElement.appendChild(table);
 	}
 
-	createFireSource() {
+	function createFireSource() {
 		//loop to add/update values only for the last row
 		for (let column = 0; column <= this.fireWidth; column++) {
 			const lastLinePixelsIndex = (this.fireCanvasArea - this.fireWidth) + column;
@@ -100,7 +99,7 @@ export default class Fire {
 		}
 	}
 
-	onClick(event) {
+	function onClick(event) {
 		event.preventDefault();
 		this.btn.classList.toggle('active');
 		[...this.fireCanvasElement.children].forEach(child => {
@@ -117,11 +116,11 @@ export default class Fire {
 		}			
 	}
 
-	addTogleViewEvent() {
+	function addTogleViewEvent() {
 		this.btn.addEventListener('click', this.onClick);
 	}
 
-	init(debug, isFirstInit) {
+	function init(debug, isFirstInit) {
 		this.addTogleViewEvent();
 		if (isFirstInit) {
 			this.createFireDataStructure();
@@ -130,6 +129,6 @@ export default class Fire {
 		this.calculateFirePropagation(debug);
 		this.interval = setInterval(() => this.calculateFirePropagation(debug), 80);
 	}
+	
+	return this;
 };
-
-
