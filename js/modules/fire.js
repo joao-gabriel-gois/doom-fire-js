@@ -75,7 +75,6 @@ export default function Fire(fireWidth, fireHeight, fireCanvasElement) {
 					tableCell.style.color = colorString;
 					tableCell.innerText = fireIntensity;
 				} else {
-					table.background = '#fff';
 					tableCell.style.backgroundColor = colorString;
 				}
 				// rendering
@@ -102,7 +101,7 @@ export default function Fire(fireWidth, fireHeight, fireCanvasElement) {
 			child.remove();
 		});
 		this.btn.removeEventListener('click', this.onClick);
-		clearInterval(this.interval, 80);
+		clearInterval(this.interval, 100);
 		if (this.btn.classList.contains('active')) {
 			this.btn.innerText = 'see fire animation';
 			this.init(true);
