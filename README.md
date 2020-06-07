@@ -2,7 +2,7 @@
 
 Pixel art done by studying through / with Filipe Deschamps project - pure VanillaJS version, using classes instead of functions.
 
-Implementing and reproducing the Algorithm for Epic Game Doom in JS.
+Implementing and reproducing the Algorithm for Fire Animation in the Epic Game Doom in JS.
 
 As it uses exactly the same logic of the legendary game, it is not optimized at all for perfomance. Do not try to check the demo in mobile.
 
