@@ -16,7 +16,7 @@
     "@babel/core": "^7.6.0",
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
-    "webpack": "^4.40.2",
+    "webpack": "^5.105.4",
     "webpack-cli": "^3.3.8"
   }
 }
